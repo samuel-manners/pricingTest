@@ -9,6 +9,7 @@ public class SpringRewardsCalculator {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringRewardsCalculator.class, args);
+		System.out.println("Application has successfully started");
 	}
 
 }
