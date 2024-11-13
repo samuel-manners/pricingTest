@@ -1,10 +1,10 @@
 package com.avios.springtest.model;
 
-public class PricingError {
+public class RewardsError {
     private final int code;
     private final String reason;
 
-    public PricingError(int code, String reason) {
+    public RewardsError(int code, String reason) {
         this.code = code;
         this.reason = reason;
     }

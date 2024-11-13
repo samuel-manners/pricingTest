@@ -5,14 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PricingService {
+public class RewardsService {
 
     private final ConfigurationRetriever configurationRetriever;
 
 
     //Connects with currency service, config service and avios service
     @Autowired
-    public PricingService(ConfigurationRetriever configurationRetriever) {
+    public RewardsService(ConfigurationRetriever configurationRetriever) {
         this.configurationRetriever = configurationRetriever;
     }
 

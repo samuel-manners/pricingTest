@@ -1,9 +1,12 @@
 package com.avios.springtest.model;
 
-import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
-public class PricingResponse {
+public class RewardsRequest {
 
+    @Valid
+    @NotNull
     private Flight flight;
 
     public Flight getFlight() {
