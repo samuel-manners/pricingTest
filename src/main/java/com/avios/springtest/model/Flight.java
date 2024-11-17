@@ -2,6 +2,7 @@ package com.avios.springtest.model;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
 
 
 public class Flight {
@@ -15,7 +16,7 @@ public class Flight {
     @Pattern(regexp = "[MWJF]")
     private CabinCode cabinCode;
 
-    private int avios;
+    private ArrayList<Integer> avios;
 
     public String getDepartureIATA() {
         return departureIATA;
@@ -41,11 +42,11 @@ public class Flight {
         this.cabinCode = cabinCode;
     }
 
-    public int getAvios() {
+    public ArrayList<Integer> getAvios() {
         return avios;
     }
 
-    public void setAvios(int avios) {
+    public void setAvios(ArrayList<Integer> avios) {
         this.avios = avios;
     }
 }

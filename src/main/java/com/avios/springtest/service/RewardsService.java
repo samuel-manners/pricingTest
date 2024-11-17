@@ -4,6 +4,8 @@ import com.avios.springtest.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class RewardsService {
 
@@ -24,10 +26,10 @@ public class RewardsService {
         //Sends combined route and cabin code to config retriever to find pricing config
         IATAroutes combinedIATAroutes = IATAroutes.valueOf(iataCombined);
         CabinCode cabinCode = flight.getCabinCode();
-        double price = configurationRetriever.retrievePricingConfig(combinedIATAroutes, cabinCode);
+        ArrayList<Integer> prices = configurationRetriever.retrievePricingConfig(combinedIATAroutes, cabinCode);
 
         //Adds to flight object info and returns updated Flight Object with price
-        flight.setAvios((int) price);
+        flight.setAvios(prices);
         return flight;
     }
 

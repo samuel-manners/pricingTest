@@ -22,29 +22,36 @@ public class ConfigurationRetriever {
         aviosRates.put(IATAroutes.LGWYYZ, 3250);
     }
 
-    public double retrievePricingConfig(IATAroutes IATAroutes, CabinCode cabinCode){
+    public ArrayList<Integer> retrievePricingConfig(IATAroutes IATAroutes, CabinCode cabinCode){
         //Find routes avios rate
         int aviosRate = aviosRates.get(IATAroutes);
         double bonusAviosRate;
+        ArrayList<Integer> rewards = new ArrayList<>();
 
         //Find avios bonus rate from cabin code
-        if (cabinCode.equals(CabinCode.M)) {
-            bonusAviosRate = worldTravellerBonus;
+        if (cabinCode == null) {
+            //If null calculates all rewards
+            rewards.add((int)(aviosRate+ (aviosRate * worldTravellerBonus)));
+            rewards.add((int)(aviosRate+ (aviosRate* worldTravellerPLusBonus)));
+            rewards.add((int)(aviosRate+ (aviosRate* clubWorldBonus)));
+            rewards.add((int)(aviosRate+ (aviosRate* first)));
+
+        } else if (cabinCode.equals(CabinCode.M)) {
+            rewards.add((int)(aviosRate+ (aviosRate * worldTravellerBonus)));
         } else if (cabinCode.equals(CabinCode.W)) {
-            bonusAviosRate = worldTravellerPLusBonus;
+            rewards.add((int)(aviosRate+ (aviosRate* worldTravellerPLusBonus)));
         } else if (cabinCode.equals(CabinCode.J)) {
-            bonusAviosRate = clubWorldBonus;
+            rewards.add((int)(aviosRate+ (aviosRate* clubWorldBonus)));
         }
         else if (cabinCode.equals(CabinCode.F)){
-            bonusAviosRate = first;
+            rewards.add((int)(aviosRate+ (aviosRate* first)));
         } else {
             throw new IllegalArgumentException("Invalid Cabin Code");
         }
 
         //Calculates reward rate and return the combined reward rate and avios value
         //Could be changed to an object to provide customers info on return request of how much extra avios was earn't by cabin upgrade
-        double rewardsRate = (aviosRate * bonusAviosRate);
-        return aviosRate + rewardsRate;
+        return rewards;
     }
 
 
